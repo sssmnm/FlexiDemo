@@ -1,11 +1,10 @@
 .position-form{
-    margin: auto;
-    width: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
     border: 3px solid green;
     padding: 10px;
-    position: absolute;
-    left: 22%;
-    top: 50%;
     text-align: justify;
 }
 .position-input-elements{
@@ -15,5 +14,8 @@ label{
     padding: 20px;
 }
 .position-submit{
-    margin-left:5%;
+    margin-left:12%;
+}
+.disable-submit{
+    display: none;
 }

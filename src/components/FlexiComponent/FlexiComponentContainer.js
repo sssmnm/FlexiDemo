@@ -11,6 +11,7 @@ export class FlexiComponentContainer extends Component {
       value: flexiConfig.items[1].values[0],
       person_name: '',
       states: '',
+      validationResult: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,11 +19,21 @@ export class FlexiComponentContainer extends Component {
   }
 
   handleChange(event) {
+    const nameValidation = event.target.name==="person_name" ? /^[A-Za-z\s]+$/.test(event.target.value) : false;
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    name==="person_name" && nameValidation ?
     this.setState({
       [name]: value,
+      validationResult: true
+    }): name==='states' && this.state.validationResult? this.setState({
+      [name]: value,
+      validationResult: true
+    }):
+    this.setState({
+      [name]: value,
+      validationResult: false
     });
   }
 
@@ -36,7 +47,7 @@ export class FlexiComponentContainer extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <CustomFormElement flexiConfig={flexiConfig} handleChange={this.handleChange}/>
-        <input type="submit" value="Submit" className="position-submit" />
+        <input type="submit" value="Submit" className={this.state.validationResult ? "position-submit": "disable-submit"} />
       </form>
     );
   }

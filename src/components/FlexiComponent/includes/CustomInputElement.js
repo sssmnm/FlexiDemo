@@ -9,6 +9,7 @@ const CustomInputElement = ({entity, handleChange}) => (
       type="text"
       placeholder={entity.label}
       onChange={handleChange}
+      pattern="[a-zA-Z]{5,}"
     />
   </div>
 );
